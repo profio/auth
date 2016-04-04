@@ -1,0 +1,11 @@
+{
+    "name": "profio/auth",
+    "description": "Authentication & authorization package for Laravel with workflow (menu) management.",
+    "authors": [
+        {
+            "name": "Ifan Iqbal",
+            "email": "ifaniqbal.com@gmail.com"
+        }
+    ],
+    "require": {}
+}
