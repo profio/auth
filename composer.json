@@ -1,7 +1,6 @@
 {
     "name": "profio/auth",
     "description": "Authentication & authorization package for Laravel with workflow (menu) management.",
-    "version": "0.1",
     "authors": [
         {
             "name": "Ifan Iqbal",
