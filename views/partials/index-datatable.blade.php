@@ -1,9 +1,9 @@
-@section('end-head')
+@section(config('profio.auth.view.end_head_section_name'))
 <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/datatables/dataTables.bootstrap.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('/plugins/iCheck/flat/blue.css') }}">
 @append
 
-@section('end-body')
+@section(config('profio.auth.view.end_body_section_name'))
 <script type="text/javascript" src="{{ asset('/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('/plugins/iCheck/icheck.min.js') }}"></script>

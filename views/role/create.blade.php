@@ -1,10 +1,10 @@
 @extends(config('profio.auth.view.layout'))
 
-@section('content-title')
+@section(config('profio.auth.view.content_title_section_name'))
 Add Role
 @stop
 
-@section('content')
+@section(config('profio.auth.view.main_content_section_name'))
 
 <div class="row">
     <div class="col-md-12">

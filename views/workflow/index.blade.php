@@ -1,10 +1,10 @@
 @extends(config('profio.auth.view.layout'))
 
-@section('content-title')
+@section(config('profio.auth.view.content_title_section_name'))
 Workflows
 @stop
 
-@section('content')
+@section(config('profio.auth.view.main_content_section_name'))
 
 <div class="row">
     <div class="col-md-12">
@@ -63,7 +63,7 @@ Workflows
 
 @stop
 
-@section('end-body')
+@section(config('profio.auth.view.end_body_section_name'))
     @include('profio/auth::partials.index-datatable')
     @include('profio/auth::partials.modal-delete')
 @append
