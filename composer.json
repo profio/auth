@@ -1,11 +1,24 @@
 {
     "name": "profio/auth",
     "description": "Authentication & authorization package for Laravel with workflow (menu) management.",
+    "version": "0.1",
     "authors": [
         {
             "name": "Ifan Iqbal",
             "email": "ifaniqbal.com@gmail.com"
         }
     ],
-    "require": {}
+    "autoload": {
+        "psr-4": {
+            "Profio\\": "src/Profio/"
+        }
+    },
+    "require": {
+        "illuminate/database": "5.1.*",
+        "illuminate/support": "5.1.*",
+        "illuminate/routing": "5.1.*",
+        "illuminate/http": "5.1.*",
+        "adamwathan/bootforms": "0.8",
+        "laracasts/flash": "1.3.*"
+    }
 }
