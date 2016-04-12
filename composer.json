@@ -1,6 +1,7 @@
 {
     "name": "profio/auth",
     "description": "Authentication & authorization package for Laravel with workflow (menu) management.",
+    "license": "MIT",
     "authors": [
         {
             "name": "Ifan Iqbal",
