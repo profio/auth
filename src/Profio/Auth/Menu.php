@@ -3,6 +3,7 @@
 namespace Profio\Auth;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Menu extends Model
 {
@@ -14,7 +15,15 @@ class Menu extends Model
 
     public $timestamps = false;
 
+    public $children = null;
+
     protected $fillable = ['name', 'url', 'icon'];
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->children = new Collection;
+    }
 
     public function roles()
     {

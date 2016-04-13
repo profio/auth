@@ -86,6 +86,10 @@ class AuthSchema extends Migration
             $table->string('name');
             $table->string('url');
             $table->string('icon')->nullable();
+            $table->boolean('enabled');
+            $table->integer('position');
+            $table->unsignedInteger('parent_id');
+            $table->softDeletes();
         });
 
         // Create table for associating menus to roles (Many-to-Many)
