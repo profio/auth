@@ -40,4 +40,27 @@ class Menu extends Model
         return $this->belongsToMany('Profio\Auth\Permission', 'menu_permission');
     }
 
+    public function parent()
+    {
+        return $this->belongsTo('Profio\Auth\Menu', 'parent_id');
+    }
+
+    public function child()
+    {
+        return $this->hasMany('Profio\Auth\Menu', 'parent_id');
+    }
+
+    public function addPermission($name, $display_name, $description = null)
+    {
+        $permission = new Permission;
+        $permission->name = $name;
+        $permission->display_name = $display_name;
+        $permission->description = $description;
+        
+        $permission->save();
+        $this->permissions()->attach($permission);
+
+        return $permission;
+    }
+
 }
