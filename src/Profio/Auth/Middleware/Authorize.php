@@ -16,7 +16,6 @@ class Authorize
      */
     public function handle($request, Closure $next)
     {
-        dd($request->user());
         if (!$request->user()->can($request->path())) {
             return redirect('/');
         }

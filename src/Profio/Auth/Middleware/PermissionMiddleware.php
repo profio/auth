@@ -15,9 +15,9 @@ class PermissionMiddleware
      */
     public function handle($request, Closure $next, $permission)
     {
-        // if (!$request->user()->can($permission)) {
-        //     return redirect('/');
-        // }
+        if (!$request->user()->can($permission)) {
+            return redirect('/');
+        }
 
         return $next($request);
     }
