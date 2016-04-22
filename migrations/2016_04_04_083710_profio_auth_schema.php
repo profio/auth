@@ -74,8 +74,6 @@ class ProfioAuthSchema extends Migration
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('role_id')->references('id')->on('roles')
                 ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('workflow_id')->references('id')->on('workflows')
-                ->onUpdate('cascade')->onDelete('cascade');
 
             $table->primary(['permission_id', 'role_id', 'workflow_id']);
         });
@@ -101,8 +99,6 @@ class ProfioAuthSchema extends Migration
             $table->foreign('menu_id')->references('id')->on('menus')
                 ->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('role_id')->references('id')->on('roles')
-                ->onUpdate('cascade')->onDelete('cascade');
-            $table->foreign('workflow_id')->references('id')->on('workflows')
                 ->onUpdate('cascade')->onDelete('cascade');
 
             $table->primary(['menu_id', 'role_id', 'workflow_id']);
