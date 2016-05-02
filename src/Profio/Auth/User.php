@@ -14,7 +14,7 @@ class User extends Model implements AuthenticatableContract,
 AuthorizableContract,
 CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword;
+    use Authenticatable, UserTrait, CanResetPassword;
 
     /**
      * The database table used by the model.
@@ -42,6 +42,19 @@ CanResetPasswordContract
         return $this->belongsTo('Profio\Auth\Role');
     }
 
+    public function getActiveRole()
+    {
+        $role = $this->role;
+        if (is_null($role)) {
+            $role = $this->roles()->first();
+            if (!is_null($role)) {
+                $this->role()->associate($role)->save();
+            }
+        }
+
+        return $role;
+    }
+
     public function roles()
     {
         return $this->belongsToMany('Profio\Auth\Role');
@@ -57,14 +70,14 @@ CanResetPasswordContract
         return $this->morphTo();
     }
 
-    public function menus()
-    {
-        return $this->role->menus;
-    }
-
     public function sidebarMenu()
     {
-        $menus   = $this->menus();
+        $activeRole = $this->getActiveRole();
+        if (is_null($activeRole)) {
+            return collect();
+        }
+
+        $menus   = $activeRole->menus;
         $parents = $menus->where('parent_id', 0);
         foreach ($parents as $parent) {
             foreach ($menus as $menu) {

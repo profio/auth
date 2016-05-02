@@ -66,12 +66,10 @@ trait UserTrait
             // Return the value of $requireAll;
             return $requireAll;
         } else {
-            foreach ($this->roles as $role) {
-                // Validate against the Permission table
-                foreach ($role->perms as $perm) {
-                    if ($perm->name == $permission) {
-                        return true;
-                    }
+            // Validate against the Permission table
+            foreach ($this->getActiveRole()->getPermissions() as $perm) {
+                if ($perm->name == $permission) {
+                    return true;
                 }
             }
         }
