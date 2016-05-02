@@ -12,9 +12,9 @@ Add Role
             {!! BootForm::openHorizontal(['sm' => [4, 8], 'lg' => [2, 10]]) !!}
             {{ BootForm::bind($role) }}
             <div class="box-body">
-                {!! BootForm::text('Nama', 'name', $role->name) !!}
-                {!! BootForm::text('Tampilan', 'display_name', $role->display_namea) !!}
-                {!! BootForm::text('Deskripsi', 'description', $role->description) !!}
+                {!! BootForm::text('Name', 'name', $role->name)->required() !!}
+                {!! BootForm::text('Display Name', 'display_name', $role->display_name)->required() !!}
+                {!! BootForm::text('Description', 'description', $role->description) !!}
                 {!! BootForm::submit('Simpan'); !!}
             </div>
             {!! BootForm::close() !!}

@@ -12,19 +12,19 @@ Add Menu
             {!! BootForm::openHorizontal(['sm' => [4, 8], 'lg' => [2, 10]]) !!}
             {{ BootForm::bind($menu) }}
             <div class="box-body">
-                {!! BootForm::text('Nama', 'name', $menu->name)->required() !!}
+                {!! BootForm::text('Name', 'name', $menu->name)->required() !!}
                 {!! BootForm::text('URL', 'url', $menu->url) !!}
                 {!! BootForm::select('Icon', 'icon', $icons) !!}
                 {!! BootForm::select('Role', 'role_id', $roles)->required() !!}
                 <div class="form-group">
-                    <label class="col-sm-4 col-lg-2 control-label" for="permissions">Hak Akses</label>
+                    <label class="col-sm-4 col-lg-2 control-label" for="permissions">Permission</label>
                     <div class="col-sm-8 col-lg-10">
                         <table class="table datatable table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th class="col-md-10">Hak Akses</th>
-                                    <th class="col-md-2">Pilih</th>
+                                    <th class="col-md-10">Permission Name</th>
+                                    <th class="col-md-2">Choose</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -42,7 +42,7 @@ Add Menu
                 </div>
                 <div id="result">
                 </div>
-                <div class="form-group"><div class="col-sm-offset-4 col-sm-8 col-lg-offset-2 col-lg-10"><button id="submit" type="submit" class="btn btn-primary">Simpan</button></div></div>
+                <div class="form-group"><div class="col-sm-offset-4 col-sm-8 col-lg-offset-2 col-lg-10"><button id="submit" type="submit" class="btn btn-primary">Save</button></div></div>
             </div>
             {!! BootForm::close() !!}
         </div>

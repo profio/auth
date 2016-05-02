@@ -9,7 +9,7 @@ Workflows
 <div class="row">
     <div class="col-md-12">
         <a href="{{ url('workflow/create') }}" class="btn btn-social btn-primary">
-            <i class="fa fa-plus"></i> Tambah Aliran Kerja
+            <i class="fa fa-plus"></i> Add Workflow
         </a>
         <br><br>
         <div class="box box-primary">
@@ -27,9 +27,9 @@ Workflows
                             <tr>
                                 <th class="no-sort" style="width=5px"></th>
                                 <th>No.</th>
-                                <th class="col-md-4">Nama</th>
-                                <th class="col-md-6">Deskripsi</th>
-                                <th class="col-md-2">Aksi</th>
+                                <th class="col-md-4">Name</th>
+                                <th class="col-md-6">Description</th>
+                                <th class="col-md-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>

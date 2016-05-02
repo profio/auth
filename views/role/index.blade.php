@@ -27,10 +27,9 @@ Roles
                             <tr>
                                 <th class="no-sort" style="width=5px"></th>
                                 <th>No.</th>
-                                <th class="col-md-3">Nama</th>
-                                <th class="col-md-3">Tampilan</th>
-                                <th class="col-md-4">Deskripsi</th>
-                                <th class="col-md-2">Aksi</th>
+                                <th class="col-md-3">Name</th>
+                                <th class="col-md-6">Display Name</th>
+                                <th class="col-md-3">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -41,7 +40,6 @@ Roles
                                 <td id="{{$i}}" >{{ $i++ }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->display_name }}</td>
-                                <td>{{ $item->description }}</td>
                                 <td>
                                     <a class="btn btn-xs btn-primary" data-toggle="tooltip" title="Edit" href="{{ url('role/edit/' . $item->id) }}">
                                         <i class="glyphicon glyphicon-edit"></i>

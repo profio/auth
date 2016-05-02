@@ -12,9 +12,9 @@ Add Permission
             {!! BootForm::openHorizontal(['sm' => [4, 8], 'lg' => [2, 10]]) !!}
             {{ BootForm::bind($permission) }}
             <div class="box-body">
-                {!! BootForm::text('Nama', 'name', $permission->name) !!}
-                {!! BootForm::text('Tampilan', 'display_name', $permission->display_name) !!}
-                {!! BootForm::text('Deskripsi', 'description', $permission->description) !!}
+                {!! BootForm::text('Name', 'name', $permission->name)->required() !!}
+                {!! BootForm::text('Display Name', 'display_name', $permission->display_name)->required() !!}
+                {!! BootForm::text('Description', 'description', $permission->description) !!}
                 {!! BootForm::submit('Simpan'); !!}
             </div>
             {!! BootForm::close() !!}

@@ -26,10 +26,10 @@ Menus
                             <tr>
                                 <th class="no-sort" style="width=5px"></th>
                                 <th>No.</th>
-                                <th class="col-md-3">Nama</th>
+                                <th class="col-md-3">Name</th>
                                 <th class="col-md-3">URL</th>
                                 <th class="col-md-4">Role</th>
-                                <th class="col-md-2">Aksi</th>
+                                <th class="col-md-2">Action</th>
                             </tr>
                         </thead>
                         <tbody>

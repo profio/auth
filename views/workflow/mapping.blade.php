@@ -1,7 +1,7 @@
 @extends(config('profio.auth.view.layout'))
 
 @section(config('profio.auth.view.content_title_section_name'))
-Mapping Menu
+Menu Mapping
 @stop
 
 @section(config('profio.auth.view.main_content_section_name'))
@@ -10,20 +10,20 @@ Mapping Menu
     <div class="col-md-12">
         <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">Aliran Kerja {{ $workflow->name }}</h3>
+                <h3 class="box-title">Workflow {{ $workflow->name }}</h3>
             </div>
             <form action="" method="post" role="form">
                 <div class="box-body">
-                    <button class="btn btn-default" type="button" data-toggle="modal" data-target="#process">Tambah Proses</button>
+                    <button class="btn btn-default" type="button" data-toggle="modal" data-target="#process">Add Process</button>
                     <br><br>
                     <div class="row">
                         <div class="col-md-8">
                             <table id="processes" class="table table-bordered">
                                 <thead>
                                     <tr>
-                                        <th class="col-md-5">Peran</th>
+                                        <th class="col-md-5">Role</th>
                                         <th class="col-md-5">Menu</th>
-                                        <th class="col-md-2">Aksi</th>
+                                        <th class="col-md-2">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,7 +39,7 @@ Mapping Menu
                         </div>
                     </div>
                     {!! csrf_field() !!}
-                    <button class="btn btn-primary" type="submit">Simpan</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
                 </div>
             </form>
         </div>
@@ -50,12 +50,12 @@ Mapping Menu
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="addProcessLabel">Tambah Proses</h4>
+        <h4 class="modal-title" id="addProcessLabel">Add Process</h4>
       </div>
       <div class="modal-body">
         <form>
             <div class="form-group">
-                <label for="role_id">Peran</label>
+                <label for="role_id">Role</label>
                 <select class="form-control" id="role_id">
                 @foreach ($roles as $id => $name)
                     <option value="{{ $id }}">{{ $name }}</option>
@@ -73,8 +73,8 @@ Mapping Menu
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Tutup</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="addProcess">Tambah</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="addProcess">Add</button>
       </div>
     </div>
   </div>

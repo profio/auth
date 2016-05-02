@@ -12,9 +12,9 @@ Add Workflow
             {!! BootForm::openHorizontal(['sm' => [4, 8], 'lg' => [2, 10]]) !!}
             {{ BootForm::bind($workflow) }}
             <div class="box-body">
-                {!! BootForm::text('Nama', 'name', $workflow->name) !!}
-                {!! BootForm::textarea('Deskripsi', 'description', $workflow->description) !!}
-                {!! BootForm::submit('Simpan'); !!}
+                {!! BootForm::text('Name', 'name', $workflow->name) !!}
+                {!! BootForm::textarea('Description', 'description', $workflow->description) !!}
+                {!! BootForm::submit('Save'); !!}
             </div>
             {!! BootForm::close() !!}
         </div>
