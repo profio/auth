@@ -12,9 +12,10 @@ Add Menu
             {!! BootForm::openHorizontal(['sm' => [4, 8], 'lg' => [2, 10]]) !!}
             {{ BootForm::bind($menu) }}
             <div class="box-body">
-                {!! BootForm::text('Nama', 'name', $menu->name) !!}
+                {!! BootForm::text('Nama', 'name', $menu->name)->required() !!}
                 {!! BootForm::text('URL', 'url', $menu->url) !!}
-                {!! BootForm::text('Icon', 'icon', $menu->icon) !!}
+                {!! BootForm::select('Icon', 'icon', $icons) !!}
+                {!! BootForm::select('Role', 'role_id', $roles)->required() !!}
                 <div class="form-group">
                     <label class="col-sm-4 col-lg-2 control-label" for="permissions">Hak Akses</label>
                     <div class="col-sm-8 col-lg-10">
@@ -47,13 +48,18 @@ Add Menu
         </div>
     </div>
 </div>
-
+<span class=""></span>
 @stop
 
+@include('profio/auth::partials.select2')
 
 @section(config('profio.auth.view.end_body_section_name'))
 @include('profio/auth::partials.index-datatable')
 <script>
+function fontawesomeIcon (state) {
+    return $('<div style="padding-top:5px"><i style="width: 1.5em" class="' + state.id + '"></i> <span>' + state.text + '</span></div>');
+};
+
 $(function(){
     var menuPermissions = [
         @foreach ($menu->permissions as $permission)
@@ -70,6 +76,13 @@ $(function(){
     $('#submit').click(function(){
         $('#result').append(datatable.$('input:checked'));
     });
+
+    $("select[name=icon]").select2({
+        templateResult: fontawesomeIcon,
+        templateSelection: fontawesomeIcon,
+        theme: 'bootstrap'
+    });
 });
 </script>
+
 @append

@@ -28,7 +28,7 @@ Menus
                                 <th>No.</th>
                                 <th class="col-md-3">Nama</th>
                                 <th class="col-md-3">URL</th>
-                                <th class="col-md-4">Icon</th>
+                                <th class="col-md-4">Role</th>
                                 <th class="col-md-2">Aksi</th>
                             </tr>
                         </thead>
@@ -40,7 +40,11 @@ Menus
                                 <td id="{{$i}}" >{{ $i++ }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->url }}</td>
-                                <td>{{ $item->icon }}</td>
+                                <td>
+                                    @foreach ($item->roles as $role)
+                                    <span class="label label-default">{{ $role->display_name }}</span>
+                                    @endforeach
+                                </td>
                                 <td>
                                     <a class="btn btn-xs btn-primary" data-toggle="tooltip" title="Edit" href="{{ url('menu/edit/' . $item->id) }}">
                                         <i class="glyphicon glyphicon-edit"></i>
