@@ -77,28 +77,6 @@ CanResetPasswordContract
             return collect();
         }
 
-        $menus   = $activeRole->menus;
-        $parents = $menus->where('parent_id', 0);
-        foreach ($parents as $parent) {
-            foreach ($menus as $menu) {
-                if ($menu->parent_id == $parent->id) {
-                    $parent->children->push($menu);
-                }
-            }
-
-            $parent->children = $parent->children->sortBy('position');
-            $children         = $parent->children;
-            foreach ($children as $child) {
-                foreach ($menus as $menu) {
-                    if ($menu->parent_id == $child->id) {
-                        $child->children->push($menu);
-                    }
-                }
-
-                $child->children = $child->children->sortBy('position');
-            }
-        }
-
-        return $parents;
+        return $activeRole->sidebarMenu();
     }
 }

@@ -44,6 +44,9 @@ Roles
                                     <a class="btn btn-xs btn-primary" data-toggle="tooltip" title="Edit" href="{{ url('role/edit/' . $item->id) }}">
                                         <i class="glyphicon glyphicon-edit"></i>
                                     </a>
+                                    <a class="btn btn-xs btn-primary" data-toggle="tooltip" title="Manage Menu" href="{{ url('role/menu/' . $item->id) }}">
+                                        <i class="fa fa-gear"></i> Manage Menu
+                                    </a>
                                     <button class="btn btn-xs btn-danger destroy" data-toggle="tooltip" data-url="{{ url('role/delete/' . $item->id) }}" title="Delete">
                                         <i class="glyphicon glyphicon-trash"></i>
                                     </button>

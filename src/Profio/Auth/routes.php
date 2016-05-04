@@ -9,6 +9,8 @@ Route::group(['namespace' => 'Profio\Auth\Controller'], function () {
     get('role/edit/{id}', ['middleware' => 'permission:edit-role', 'uses' => 'RoleController@edit']);
     post('role/edit/{id}', ['middleware' => 'permission:edit-role', 'uses' => 'RoleController@update']);
     get('role/delete/{id}', ['middleware' => 'permission:delete-role', 'uses' => 'RoleController@destroy']);
+    get('role/menu/{id}', ['uses' => 'RoleController@manageMenu']);
+    post('role/menu/{id}', ['uses' => 'RoleController@manageMenu']);
 
     ## Menu
 
