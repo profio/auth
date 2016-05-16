@@ -65,11 +65,6 @@ CanResetPasswordContract
         return $this->role->name == $name;
     }
 
-    public function person()
-    {
-        return $this->morphTo();
-    }
-
     public function sidebarMenu()
     {
         $activeRole = $this->getActiveRole();
