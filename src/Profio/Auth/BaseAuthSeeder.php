@@ -27,6 +27,8 @@ class BaseAuthSeeder extends Seeder
             'display_name' => 'Administrator', 
         ]);
 
+        $user->roles()->attach($role);
+
         $menu = $role->addMenu('Menu', 'menu');
         $menu->addPermission('manage-menu', 'Menu Index');
         $menu->addPermission('create-menu', 'Menu Create');

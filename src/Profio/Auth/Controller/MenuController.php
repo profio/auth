@@ -853,7 +853,7 @@ class MenuController extends BaseController
         $menu        = new Menu;
         $title       = 'Tambah Menu';
         $permissions = Permission::get()->sortBy('name');
-        $roles = Role::get()->sortBy('display_name')->pluck('display_name', 'id')->prepend('');
+        $roles = Role::get()->sortBy('display_name')->pluck('display_name', 'id');
         $icons = $this->icons;
         return view('profio/auth::menu.create', compact('menu', 'title', 'permissions', 'roles', 'icons'));
     }
@@ -889,7 +889,7 @@ class MenuController extends BaseController
 
         $title       = 'Ubah Menu';
         $permissions = Permission::get()->sortBy('name');
-        $roles = Role::get()->sortBy('display_name')->pluck('display_name', 'id')->prepend('');
+        $roles = Role::get()->sortBy('display_name')->pluck('display_name', 'id');
         $icons = $this->icons;
         return view('profio/auth::menu.create', compact('menu', 'title', 'permissions', 'roles', 'icons'));
     }
@@ -903,7 +903,9 @@ class MenuController extends BaseController
 
             $permission_ids = $request->input('permission_ids');
 
-            $menu->permissions()->sync($permission_ids);
+            if (!is_null($permission_ids)) {
+                $menu->permissions()->sync($permission_ids);
+            }
 
             $role = Role::findOrFail($request->get('role_id'));
             

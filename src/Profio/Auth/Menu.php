@@ -17,7 +17,7 @@ class Menu extends Model
 
     public $children = null;
 
-    protected $fillable = ['name', 'url', 'icon'];
+    protected $fillable = ['name', 'url', 'icon', 'position'];
 
     public function __construct(array $attributes = [])
     {
@@ -52,11 +52,11 @@ class Menu extends Model
 
     public function addPermission($name, $display_name, $description = null)
     {
-        $permission = new Permission;
-        $permission->name = $name;
+        $permission               = new Permission;
+        $permission->name         = $name;
         $permission->display_name = $display_name;
-        $permission->description = $description;
-        
+        $permission->description  = $description;
+
         $permission->save();
         $this->permissions()->attach($permission);
 
