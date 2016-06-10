@@ -9,6 +9,7 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
+use Profio\Auth\Role;
 
 class User extends Model implements AuthenticatableContract,
 AuthorizableContract,
@@ -36,6 +37,11 @@ CanResetPasswordContract
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function setActiveRole(Role $role)
+    {
+        $this->role()->associate($role)->save();
+    }
 
     public function role()
     {

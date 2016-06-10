@@ -65,8 +65,17 @@ class Role extends Model
     	return $menu;
     }
 
+    protected function getSidebarSessionName()
+    {
+        return 'profio/auth.sidebarMenu.' . $this->name;
+    }
+
     public function sidebarMenu()
     {
+        if (session()->has($this->getSidebarSessionName())) {
+            return session($this->getSidebarSessionName());
+        }
+
         $menus   = $this->menus->sortBy('position');
         $parents = $menus->where('parent_id', 0);
         foreach ($parents as $parent) {
@@ -88,6 +97,8 @@ class Role extends Model
                 $child->children = $child->children->sortBy('position');
             }
         }
+
+        session()->put($this->getSidebarSessionName(), $parents);
 
         return $parents;
     }
