@@ -17,4 +17,9 @@ class Permission extends Model
     {
         return $this->belongsToMany('Profio\Auth\Menu', 'menu_permission');
     }
+
+    public function roles()
+    {
+        return $this->belongsToMany('Profio\Auth\Role', 'permission_role');
+    }
 }

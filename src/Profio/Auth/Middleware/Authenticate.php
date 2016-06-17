@@ -8,52 +8,33 @@ use Illuminate\Support\Facades\Auth;
 
 class Authenticate
 {
-    /**
-     * The Guard implementation.
-     *
-     * @var Guard
-     */
     protected $auth;
 
-    /**
-     * Create a new filter instance.
-     *
-     * @param  Guard  $auth
-     * @return void
-     */
     public function __construct(Guard $auth)
     {
         $this->auth = $auth;
     }
 
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
     public function handle($request, Closure $next)
     {
+        if (env('BYPASS_ACCESS') == 1) {
+            return $next($request);
+        }
+
         if ($this->auth->guest()) {
             if ($request->ajax()) {
-                return response('Unauthenticated.', 401);
+                return response('Unauthorized.', 401);
             } else {
-                return redirect('login');
-            }
-        } else {
-            $user = $this->auth->user();
-            $role = $this->auth->user()->role;
-
-            if (is_null($role)) {
-                return redirect('login')->withMessage('Your role has been reset. Please try to login again.');
-            }
-
-            if (!$user->hasRole($role->name)) {
-                return redirect('login')->withMessage('Your role has been reset. Please try to login again.');
+                return redirect()->guest('auth/login');
             }
         }
 
-        return $next($request);
+        if ($this->auth->user()->can($request->route()->getName())) {
+            return $next($request);
+        } else {
+            flash()->error('Anda tidak mempunyai akses untuk membuka halaman tersebut.');
+
+            return redirect('/');
+        }
     }
 }

@@ -3,6 +3,7 @@
 namespace Profio\Auth;
 
 use Illuminate\Database\Eloquent\Model;
+use Profio\Auth\Permission;
 
 class Role extends Model
 {
@@ -14,6 +15,14 @@ class Role extends Model
         return $this->belongsToMany('Profio\Auth\Menu', 'menu_role', 'role_id', 'menu_id')->withPivot('workflow_id');
     }
 
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class, 'permission_role')->withPivot('workflow_id');
+    }
+
+    /**
+     * Get permission from menu
+     */
     public function getPermissions()
     {
         $menus = $this->menus;

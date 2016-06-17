@@ -9,7 +9,7 @@ Permissions
 <div class="row">
     <div class="col-md-12">
         <a href="{{ url('permission/create') }}" class="btn btn-social btn-primary">
-            <i class="fa fa-plus"></i> Tambah Hak Akses
+            <i class="fa fa-plus"></i> Add Permission
         </a>
         <br><br>
         <div class="box box-primary">
