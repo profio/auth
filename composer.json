@@ -2,6 +2,7 @@
     "name": "profio/auth",
     "description": "Authentication & authorization package for Laravel with workflow (menu) management.",
     "license": "MIT",
+    "version": "0.1.2",
     "authors": [
         {
             "name": "Ifan Iqbal",
@@ -10,7 +11,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Profio\\": "src/Profio/"
+            "Profio\\Auth\\": "src/Profio/Auth/"
         }
     },
     "require": {
