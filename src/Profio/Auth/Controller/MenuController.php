@@ -4,6 +4,7 @@ namespace Profio\Auth\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Profio\Auth\AuthService;
 use Profio\Auth\Menu;
 use Profio\Auth\Permission;
 use Profio\Auth\Role;
@@ -858,19 +859,16 @@ class MenuController extends BaseController
         return view('profio/auth::menu.create', compact('menu', 'title', 'permissions', 'roles', 'icons'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, AuthService $service)
     {
-        DB::transaction(function() use ($request) {
+        DB::transaction(function() use ($request, $service) {
             $menu = Menu::create($request->only('name', 'url', 'icon'));
 
-            $permission_ids = $request->input('permission_ids');
+            $permission_ids = $request->input('permission_ids') ?: [];
 
             $role = Role::findOrFail($request->get('role_id'));
-            $menu->roles()->sync([$role->id]);
 
-            if (count($permission_ids) > 0) {
-                $menu->permissions()->sync($permission_ids);
-            }
+            $service->addAccesss($role, $menu, $permission_ids);
 
             flash()->success('Menu baru berhasil ditambahkan.');
         });

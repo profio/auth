@@ -13,7 +13,7 @@ Add Permission
             {{ BootForm::bind($permission) }}
             <div class="box-body">
                 {!! BootForm::text('Name', 'name', $permission->name)->required() !!}
-                {!! BootForm::text('Display Name', 'display_name', $permission->display_name)->required() !!}
+                {!! BootForm::text('Display Name', 'display_name', $permission->display_name) !!}
                 {!! BootForm::text('Description', 'description', $permission->description) !!}
                 {!! BootForm::submit('Simpan'); !!}
             </div>
