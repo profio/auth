@@ -86,7 +86,7 @@ class Role extends Model
         }
 
         $menus   = $this->menus->sortBy('position');
-        $parents = $menus->where('parent_id', 0);
+        $parents = $menus->whereLoose('parent_id', 0);
         foreach ($parents as $parent) {
             foreach ($menus as $menu) {
                 if ($menu->parent_id == $parent->id) {
