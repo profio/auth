@@ -1,7 +1,7 @@
 @extends(config('profio.auth.view.layout'))
 
 @section(config('profio.auth.view.content_title_section_name'))
-Add Menu
+{{ $title }}
 @stop
 
 @section(config('profio.auth.view.main_content_section_name'))

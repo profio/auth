@@ -852,7 +852,7 @@ class MenuController extends BaseController
     public function create()
     {
         $menu        = new Menu;
-        $title       = 'Tambah Menu';
+        $title       = 'Add Menu';
         $permissions = Permission::get()->sortBy('name');
         $roles = Role::get()->sortBy('display_name')->pluck('display_name', 'id');
         $icons = $this->icons;
@@ -885,7 +885,7 @@ class MenuController extends BaseController
             $menu->role_id = $menu->role_id->id;
         }
 
-        $title       = 'Ubah Menu';
+        $title       = 'Edit Menu';
         $permissions = Permission::get()->sortBy('name');
         $roles = Role::get()->sortBy('display_name')->pluck('display_name', 'id');
         $icons = $this->icons;

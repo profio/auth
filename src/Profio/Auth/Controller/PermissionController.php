@@ -5,6 +5,7 @@ namespace Profio\Auth\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Profio\Auth\Permission;
+use Profio\Auth\Role;
 
 class PermissionController extends BaseController
 {
@@ -17,22 +18,29 @@ class PermissionController extends BaseController
     public function create()
     {
         $permission = new Permission;
-        $title      = 'Tambah Permission';
-        return view('profio/auth::permission.create', compact('permission', 'title'));
+        $title      = 'Add Permission';
+        $roles      = Role::get()->sortBy('name');
+        return view('profio/auth::permission.create', compact('permission', 'title', 'roles'));
     }
 
     public function store(Request $request)
     {
-        Permission::create($request->only('name', 'display_name', 'description'));
+        DB::beginTransaction();
+        $permission = Permission::create($request->only('name', 'display_name', 'description'));
+        $role_ids = $request->input('role_ids') ?: [];
+        $permission->roles()->sync($role_ids);
+        DB::commit();
+
         flash()->success('Permission baru berhasil ditambahkan.');
         return redirect('permission');
     }
 
     public function edit($id)
     {
-        $permission = Permission::find($id);
-        $title      = 'Ubah Permission';
-        return view('profio/auth::permission.create', compact('permission', 'title'));
+        $permission = Permission::with('roles')->find($id);
+        $title      = 'Edit Permission';
+        $roles      = Role::get()->sortBy('name');
+        return view('profio/auth::permission.create', compact('permission', 'title', 'roles'));
     }
 
     public function update(Request $request, $id)
@@ -40,6 +48,8 @@ class PermissionController extends BaseController
         DB::transaction(function () use ($request, $id) {
             $permission = Permission::find($id);
             $permission->update($request->only('name', 'display_name', 'description'));
+            $role_ids = $request->input('role_ids') ?: [];
+            $permission->roles()->sync($role_ids);
             flash()->success('Data Permission berhasil diperbarui.');
         });
         return redirect()->back();
