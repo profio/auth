@@ -56,6 +56,13 @@ CanResetPasswordContract
             if (!is_null($role)) {
                 $this->role()->associate($role)->save();
             }
+        } else {
+            if (!$this->roles()->where('id', $role->id)->exists()) {
+                $this->role_id = null;
+                $this->save();
+                
+                $role = $this->getActiveRole();
+            }
         }
 
         return $role;
