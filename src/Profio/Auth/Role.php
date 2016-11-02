@@ -94,7 +94,7 @@ class Role extends Model
                 }
             }
 
-            $parent->children = $parent->children->sortBy('position');
+            $parent->children = $parent->child->sortBy('position');
             $children         = $parent->children;
             foreach ($children as $child) {
                 foreach ($menus as $menu) {
