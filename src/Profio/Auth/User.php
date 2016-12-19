@@ -8,7 +8,6 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\Access\Authorizable;
 use Profio\Auth\Role;
 
 class User extends Model implements AuthenticatableContract,
@@ -50,17 +49,18 @@ CanResetPasswordContract
 
     public function getActiveRole()
     {
-        $role = $this->role;
-        if (is_null($role)) {
+        $role_id = $this->role_id;
+        $role    = $this->role;
+        if (is_null($role_id)) {
             $role = $this->roles()->first();
             if (!is_null($role)) {
                 $this->role()->associate($role)->save();
             }
         } else {
-            if (!$this->roles()->where('id', $role->id)->exists()) {
+            if (!$this->roles()->where('id', $role_id)->exists()) {
                 $this->role_id = null;
                 $this->save();
-                
+
                 $role = $this->getActiveRole();
             }
         }
